@@ -18,7 +18,7 @@ const Input = ({ label, type = "text", ...props }) => {
   }, [show]);
 
   return (
-    <label className="block relative flex  border rounded-sm focus-within:border-gray-400 ">
+    <label className=" relative flex  border rounded-sm focus-within:border-gray-40">
       <input
         ref={inputRef}
         required={true}
