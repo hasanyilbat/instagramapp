@@ -2,12 +2,15 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import Input from "../components/Input";
 import { AiFillFacebook } from "react-icons/ai";
+import { useNavigate, useLocation } from "react-router-dom";
+import { login } from "../components/firebase.js";
 
 function Login() {
   const [username, setUsarname] = useState("");
   const [password, setPassword] = useState("");
   const ref = useRef();
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const enable = username && password;
 
   useEffect(() => {
@@ -26,6 +29,14 @@ function Login() {
       clearInterval(interval);
     };
   }, [ref]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(username, password);
+    // navigate(location.state?.return_url || "/", {
+    //   replace: true,
+    // });
+  };
 
   return (
     <div className="h-full w-full flex flex-wrap overflow-auto items-center justify-center gap-x-8 ">
@@ -66,7 +77,7 @@ function Login() {
             />
           </a>
 
-          <form className="grid gap-y-1.5">
+          <form onSubmit={handleSubmit} className="grid gap-y-1.5">
             <Input
               type="text"
               value={username}

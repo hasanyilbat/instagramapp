@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  const user = false;
+  const user = useSelector((state) => state.auth.user);
   if (!user) {
     return (
       <Navigate
