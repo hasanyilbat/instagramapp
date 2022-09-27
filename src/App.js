@@ -4,23 +4,31 @@ import routes from "./routes/routes";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { Loader } from "./components/Loader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const user = useSelector((state) => state.auth.user);
   const showRoutes = useRoutes(routes);
+  const [redirect, setRedirect] = useState(false);
 
-  if (!user) {
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      setRedirect(true);
+    }, 1000);
+    return () => {
+      clearInterval(timeout);
+    };
+  }, []);
+
+  if (!user && !redirect) {
     return <Loader />;
   }
 
   return (
-    user && (
-      <>
-        <Toaster position="top-right" />
-        {showRoutes}
-      </>
-    )
+    <>
+      <Toaster position="top-right" />
+      {showRoutes}
+    </>
   );
 }
 

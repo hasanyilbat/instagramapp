@@ -4,14 +4,13 @@ import Input from "../components/Input";
 import { AiFillFacebook } from "react-icons/ai";
 import { useNavigate, useLocation } from "react-router-dom";
 import { login } from "../components/firebase.js";
+import { Formik, Form } from "formik";
+import LoginSchema from "../validation/loginSchema";
 
 function Login() {
-  const [username, setUsarname] = useState("");
-  const [password, setPassword] = useState("");
   const ref = useRef();
   const navigate = useNavigate();
   const location = useLocation();
-  const enable = username && password;
 
   useEffect(() => {
     let images = ref.current.querySelectorAll("img");
@@ -30,12 +29,18 @@ function Login() {
     };
   }, [ref]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await login(username, password);
-    // navigate(location.state?.return_url || "/", {
-    //   replace: true,
-    // });
+  const images = [
+    "https://www.instagram.com/static/images/homepage/screenshots/screenshot1.png/fdfe239b7c9f.png",
+    "https://www.instagram.com/static/images/homepage/screenshots/screenshot2.png/4d62acb667fb.png",
+    "https://www.instagram.com/static/images/homepage/screenshots/screenshot3.png/94edb770accf.png",
+    "https://www.instagram.com/static/images/homepage/screenshots/screenshot4.png/a4fd825e3d49.png",
+  ];
+
+  const handleSubmit = async (values, actions) => {
+    await login(values.username, values.password);
+    navigate(location.state?.return_url || "/", {
+      replace: true,
+    });
   };
 
   return (
@@ -45,26 +50,16 @@ function Login() {
         ref={ref}
       >
         <div className="w-[250px] h-[581px] absolute top-[27px] right-[18px]">
-          <img
-            className="absolute top-0 left-0 opacity-0 transition-opacity duration-750 ease-linear"
-            src="https://www.instagram.com/static/images/homepage/screenshots/screenshot1.png/fdfe239b7c9f.png"
-            alt=""
-          />
-          <img
-            className="absolute top-0 left-0 opacity-0 transition-opacity duration-700 ease-linear"
-            src="https://www.instagram.com/static/images/homepage/screenshots/screenshot2.png/4d62acb667fb.png"
-            alt=""
-          />
-          <img
-            className="absolute top-0 left-0 opacity-0 transition-opacity duration-700 ease-linear"
-            src="https://www.instagram.com/static/images/homepage/screenshots/screenshot3.png/94edb770accf.png"
-            alt=""
-          />
-          <img
-            className="absolute top-0 left-0 opacity-0 transition-opacity duration-700 ease-linear"
-            src="https://www.instagram.com/static/images/homepage/screenshots/screenshot4.png/a4fd825e3d49.png"
-            alt=""
-          />
+          {images.map((image, index) => {
+            return (
+              <img
+                className="absolute top-0 left-0 opacity-0 transition-opacity duration-750 ease-linear"
+                src={image}
+                alt=""
+                key={index}
+              />
+            );
+          })}
         </div>
       </div>
       <div className="w-[350px] grid gap-y-3">
@@ -76,49 +71,52 @@ function Login() {
               alt=""
             />
           </a>
+          <Formik
+            validationSchema={LoginSchema}
+            initialValues={{
+              username: "",
+              password: "",
+            }}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting, isValid, dirty, values }) => (
+              <Form className="grid gap-y-1.5">
+                <Input
+                  name="username"
+                  label="Phone number, username or email"
+                />
+                <Input type="password" name="password" label="Password" />
 
-          <form onSubmit={handleSubmit} className="grid gap-y-1.5">
-            <Input
-              type="text"
-              value={username}
-              label="Phone number, username or email"
-              onChange={(e) => setUsarname(e.target.value)}
-            />
-            <Input
-              type="password"
-              value={password}
-              label="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <button
-              disabled={!enable}
-              type="submit"
-              className="h-[30px] bg-brand text-white text-sm rounded-xs my-2 font-medium disabled:opacity-50 mt-1"
-            >
-              Log In
-            </button>
-            <div className="flex items-center my-2">
-              <div className="h-px bg-gray-300 flex-1" />
-              <span className="px-4 text-gray-500 text-[13px] font-semibold my-2.5 mb-3.5">
-                OR
-              </span>
-              <div className="h-px bg-gray-300 flex-1" />
-            </div>
-            <a
-              href="#"
-              className="flex justify-center items-center gap-x-2 text-sm font-semibold text-facebook mb-2"
-            >
-              <AiFillFacebook size={20} />
-              Log in with Facebook
-            </a>
-            <a
-              href="#"
-              className="text-xs flex items-center justify-center text-link"
-            >
-              Forgot password?
-            </a>
-          </form>
+                <button
+                  type="submit"
+                  className="h-[30px] bg-brand text-white text-sm rounded-xs my-2 font-medium disabled:opacity-50 mt-1"
+                  disabled={!isValid || !dirty || isSubmitting}
+                >
+                  Log In
+                </button>
+                <div className="flex items-center my-2">
+                  <div className="h-px bg-gray-300 flex-1" />
+                  <span className="px-4 text-gray-500 text-[13px] font-semibold my-2.5 mb-3.5">
+                    OR
+                  </span>
+                  <div className="h-px bg-gray-300 flex-1" />
+                </div>
+                <a
+                  href="#"
+                  className="flex justify-center items-center gap-x-2 text-sm font-semibold text-facebook mb-2"
+                >
+                  <AiFillFacebook size={20} />
+                  Log in with Facebook
+                </a>
+                <a
+                  href="#"
+                  className="text-xs flex items-center justify-center text-link"
+                >
+                  Forgot password?
+                </a>
+              </Form>
+            )}
+          </Formik>
         </div>
         <div className=" bg-white border p-4 text-sm text-center">
           Dont have an account?{" "}

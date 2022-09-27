@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { logout } from "./firebase";
 import Search from "./Search";
 
 const Header = () => {
@@ -15,7 +16,7 @@ const Header = () => {
         </Link>
         <Search />
         <nav>
-          <button>Logout</button>
+          <button onClick={logout}>Logout</button>
         </nav>
       </div>
     </header>
