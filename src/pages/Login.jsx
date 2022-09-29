@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import Input from "../components/Input";
 import { AiFillFacebook } from "react-icons/ai";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { login } from "../components/firebase.js";
 import { Formik, Form } from "formik";
 import LoginSchema from "../validation/loginSchema";
+import Button from "../components/Button";
+import Seperator from "../components/Seperator";
 
 function Login() {
   const ref = useRef();
@@ -37,10 +39,14 @@ function Login() {
   ];
 
   const handleSubmit = async (values, actions) => {
-    await login(values.username, values.password);
-    navigate(location.state?.return_url || "/", {
-      replace: true,
-    });
+    console.log(response);
+    const response = await login(values.username, values.password);
+    if (response) {
+      console.log(response);
+      navigate(location.state?.return_url || "/", {
+        replace: true,
+      });
+    }
   };
 
   return (
@@ -87,20 +93,15 @@ function Login() {
                 />
                 <Input type="password" name="password" label="Password" />
 
-                <button
+                <Button
                   type="submit"
-                  className="h-[30px] bg-brand text-white text-sm rounded-xs my-2 font-medium disabled:opacity-50 mt-1"
                   disabled={!isValid || !dirty || isSubmitting}
                 >
+                  {" "}
                   Log In
-                </button>
-                <div className="flex items-center my-2">
-                  <div className="h-px bg-gray-300 flex-1" />
-                  <span className="px-4 text-gray-500 text-[13px] font-semibold my-2.5 mb-3.5">
-                    OR
-                  </span>
-                  <div className="h-px bg-gray-300 flex-1" />
-                </div>
+                </Button>
+
+                <Seperator />
                 <a
                   href="#"
                   className="flex justify-center items-center gap-x-2 text-sm font-semibold text-facebook mb-2"
@@ -120,9 +121,9 @@ function Login() {
         </div>
         <div className=" bg-white border p-4 text-sm text-center">
           Dont have an account?{" "}
-          <a href="#" className="font-bold text-brand">
+          <Link to="/auth/register" className="font-bold text-brand">
             Sign up
-          </a>
+          </Link>
         </div>
       </div>
     </div>

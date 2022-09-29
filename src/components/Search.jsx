@@ -4,7 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import classNames from "classnames";
 const Search = () => {
   const [open, setOpen] = useState(false);
-
+  console.log(open);
   return (
     <div className="w-[268px] relative group">
       <span
@@ -20,13 +20,16 @@ const Search = () => {
         placeholder="Search"
         onFocus={() => setOpen(true)}
         onBlur={() => setOpen(false)}
-        className="h-9 w-full rounded-lg bg-[#efefef] pl-9 group-focus-within:pl-3 outline-none"
+        className={classNames({
+          "h-9 w-full rounded-lg bg-[#efefef]  outline-none pl-9": true,
+          "pl-3": open,
+        })}
       />
       <button
         onClick={() => setOpen(false)}
         className={classNames({
           "absolute top-0 right-0 h-9 w-9  justify-center items-center text-[#c7c7c7] hidden": true,
-          "  !flex": open,
+          "!flex": open,
         })}
       >
         <AiFillCloseCircle />

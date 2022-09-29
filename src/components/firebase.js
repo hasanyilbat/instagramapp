@@ -4,9 +4,12 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 import { userHandle } from "./utils";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCbujFbPHR67-pTcC7Y_jmb2OqcW4oTmuQ",
@@ -21,8 +24,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userHandle(user);
+  } else {
+    userHandle(false);
+  }
   userHandle(user || false);
 });
 
@@ -40,5 +49,37 @@ export const logout = async () => {
     await signOut(auth);
   } catch (error) {
     toast.error(error.code);
+  }
+};
+
+export const register = async ({ email, password, full_name, username }) => {
+  try {
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    if (response.user) {
+      await setDoc(
+        (doc(db, "usernames", username),
+        {
+          user_id: response.user.uid,
+        })
+      );
+      setDoc(doc(db, "users", response.user.uid), {
+        full_name,
+        username,
+        followers: [],
+        following: [],
+        notifications: [],
+      });
+
+      await updateProfile(auth.currentUser, {
+        displayName: full_name,
+      });
+      return response.user;
+    }
+  } catch (err) {
+    toast.error(err.code);
   }
 };

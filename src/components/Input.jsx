@@ -21,7 +21,7 @@ const Input = ({ label, type = "text", ...props }) => {
       <input
         type={inputType}
         className={classNames({
-          " w-full h-[38px] rounded-sm outline-none  px-2 text-xs": true,
+          " w-full h-[38px] rounded-sm outline-none  px-2 text-xs bg-zinc-50": true,
           "pt-[10px]": field.value,
         })}
         {...props}
