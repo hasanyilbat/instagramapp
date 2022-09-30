@@ -66,9 +66,9 @@ export const register = async ({ email, password, full_name, username }) => {
           user_id: response.user.uid,
         })
       );
-      setDoc(doc(db, "users", response.user.uid), {
-        full_name,
-        username,
+      await setDoc(doc(db, "users", response.user.uid), {
+        full_name: full_name,
+        username: username,
         followers: [],
         following: [],
         notifications: [],
