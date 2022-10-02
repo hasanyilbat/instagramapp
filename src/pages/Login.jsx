@@ -39,10 +39,9 @@ function Login() {
   ];
 
   const handleSubmit = async (values, actions) => {
-    console.log(response);
     const response = await login(values.username, values.password);
+    console.log(response);
     if (response) {
-      console.log(response);
       navigate(location.state?.return_url || "/", {
         replace: true,
       });
