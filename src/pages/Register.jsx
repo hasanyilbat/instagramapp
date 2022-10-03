@@ -13,6 +13,7 @@ function Register() {
 
   const handleSubmit = async (values, actions) => {
     const response = await register(values);
+
     if (response) {
       navigate(location.state?.return_url || "/", {
         replace: true,
