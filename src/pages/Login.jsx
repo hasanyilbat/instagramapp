@@ -9,7 +9,7 @@ import LoginSchema from "../validation/loginSchema";
 import Button from "../components/Button";
 import Seperator from "../components/Seperator";
 import { useSelector } from "react-redux";
-
+import { Helmet } from "react-helmet";
 function Login() {
   const ref = useRef();
   const location = useLocation();
@@ -49,6 +49,9 @@ function Login() {
 
   return (
     <div className="h-full w-full flex flex-wrap overflow-auto items-center justify-center gap-x-8 ">
+      <Helmet>
+        <title>Login Instagram</title>
+      </Helmet>
       <div
         className="hidden md:block w-[380px] h-[581px] relative  bg-logo-pattern bg-length:[468.32px_634.15px] bg-[top_left_-46px] mb-8"
         ref={ref}

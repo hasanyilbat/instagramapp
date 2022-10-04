@@ -1,14 +1,43 @@
 import PrivateRoute from "../components/PrivateRoute";
 import Register from "../pages/Register";
 import AuthLayout from "../pages/auth";
-import Home from "../pages/Home";
+import MainLayout from "../pages/MainLayout";
 import Login from "../pages/Login";
+import ProfileLayout from "../pages/profile/Index";
+import ProfileTagged from "../pages/profile/ProfileTagged";
+import ProfilePosts from "../pages/profile/ProfilePosts";
+import Home from "../pages/Home";
+import Logout from "../pages/Logout";
 
 const routes = [
   {
     path: "/",
-    element: <Home />,
+    element: <MainLayout />,
     auth: true,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "logout",
+        element: <Logout />,
+      },
+      {
+        path: ":username",
+        element: <ProfileLayout />,
+        children: [
+          {
+            index: true,
+            element: <ProfilePosts />,
+          },
+          {
+            path: "tagged",
+            element: <ProfileTagged />,
+          },
+        ],
+      },
+    ],
   },
   {
     path: "/auth",

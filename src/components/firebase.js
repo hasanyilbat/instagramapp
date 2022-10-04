@@ -59,6 +59,16 @@ export const logout = async () => {
   }
 };
 
+export const getUserInfo = async (uname) => {
+  const username = await getDoc(doc(db, "usernames", uname));
+  if (username.exists()) {
+    return (await getDoc(doc(db, "users", username.data().user_id))).data();
+  } else {
+    toast.error("Kullanıcı Bulunamadı");
+    throw new Error("Kullanıcı Bulunamadı");
+  }
+};
+
 export const register = async ({ email, full_name, password, username }) => {
   try {
     const user = await getDoc(doc(db, "usernames", username));
@@ -76,11 +86,16 @@ export const register = async ({ email, full_name, password, username }) => {
           user_id: response.user.uid,
         });
         await setDoc(doc(db, "users", response.user.uid), {
-          full_name: full_name,
+          fullName: full_name,
           username: username,
           followers: [],
           following: [],
           notifications: [],
+          website: "",
+          bio: "",
+          phoneNumber: "",
+          gender: "",
+          posts: 0,
         });
 
         await updateProfile(auth.currentUser, {

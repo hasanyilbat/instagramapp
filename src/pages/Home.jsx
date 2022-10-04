@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
-
+import { Helmet } from "react-helmet";
 const Home = () => {
   return (
-    <>
-      <Header />
-      homepage
-    </>
+    <div>
+      <Helmet>
+        <title>Instagram</title>
+      </Helmet>
+    </div>
   );
 };
 
