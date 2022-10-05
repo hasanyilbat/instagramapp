@@ -10,7 +10,7 @@ import Home from "../pages/Home";
 import Logout from "../pages/Logout";
 import InboxLayout from "../pages/inbox/IndexLayout";
 import Inbox from "../pages/inbox/Inbox";
-import Chat from "../pages/inbox/components/Chat";
+import Chat from "../pages/inbox/components/chat/Chat";
 
 const routes = [
   {
