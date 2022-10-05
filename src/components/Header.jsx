@@ -18,11 +18,11 @@ const Header = () => {
           />
         </Link>
         <Search />
-        <nav className="flex items-center gap-x-6">
+        <nav className="flex items-center gap-x-5">
           <NavLink>
             <Icon name="home" size={24} />
           </NavLink>
-          <NavLink>
+          <NavLink to="/inbox">
             <Icon name="direct" size={24} />
           </NavLink>
           <NavLink>
