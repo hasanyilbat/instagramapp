@@ -7,7 +7,7 @@ const Message = ({ message }) => {
   return (
     <div
       className={classNames({
-        "flex gap-x-2 ": true,
+        "flex gap-x-2 max-w-[50%] ": true,
         "self-end": user.uid === message.from.id,
       })}
     >
@@ -19,8 +19,9 @@ const Message = ({ message }) => {
         />
       )}
       <p
+        style={{ hyphens: "auto" }}
         className={classNames({
-          "min-h-[44px] rounded-full  flex items-center px-5 text-sm": true,
+          "min-h-[44px] rounded-3xl  flex items-center px-4 py-3 text-sm": true,
           "border border-gray-200": user.uid !== message.from.id,
           "bg-[#efefef]": user.uid === message.from.id,
         })}

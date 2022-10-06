@@ -1,13 +1,15 @@
 import React from "react";
 import Message from "./Message";
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const Messages = ({ messages }) => {
   return (
-    <main className="h-[calc(100%-144px)] p-4 overflow-auto flex flex-col gap-y-2">
+    <ScrollToBottom className="h-[calc(100%-144px)] px-4 overflow-auto  mb-0 messages-box">
+      <div className="mb-auto"></div>
       {messages.map((message, key) => (
         <Message message={message} key={key} />
       ))}
-    </main>
+    </ScrollToBottom>
   );
 };
 
