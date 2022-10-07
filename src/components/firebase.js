@@ -12,13 +12,13 @@ import { userHandle } from "./utils";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCbujFbPHR67-pTcC7Y_jmb2OqcW4oTmuQ",
-  authDomain: "instagramclone-59004.firebaseapp.com",
-  projectId: "instagramclone-59004",
-  storageBucket: "instagramclone-59004.appspot.com",
-  messagingSenderId: "376932000176",
-  appId: "1:376932000176:web:6dafe873a4f638bddbf675",
-  measurementId: "G-LVQSVKW773",
+  apiKey: process.env.REACT_APP_ApiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 // Initialize Firebase
