@@ -4,7 +4,6 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import classNames from "classnames";
 const Search = () => {
   const [open, setOpen] = useState(false);
-  console.log(open);
   return (
     <div className="w-[268px] relative group">
       <span

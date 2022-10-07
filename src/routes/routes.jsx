@@ -54,6 +54,10 @@ const routes = [
           },
         ],
       },
+      // {
+      //   path: "following",
+
+      // },
     ],
   },
 
