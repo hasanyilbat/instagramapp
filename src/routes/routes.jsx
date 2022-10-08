@@ -11,6 +11,8 @@ import Logout from "../pages/Logout";
 import InboxLayout from "../pages/inbox/IndexLayout";
 import Inbox from "../pages/inbox/Inbox";
 import Chat from "../pages/inbox/components/chat/Chat";
+import Favorites from "../pages/Favorites";
+import Following from "../pages/Following";
 
 const routes = [
   {
@@ -54,10 +56,14 @@ const routes = [
           },
         ],
       },
-      // {
-      //   path: "following",
-
-      // },
+      {
+        path: "favorites",
+        element: <Favorites />,
+      },
+      {
+        path: "following",
+        element: <Following />,
+      },
     ],
   },
 

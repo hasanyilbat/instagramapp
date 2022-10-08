@@ -19,20 +19,28 @@ const Header = () => {
   console.log(toggleDropdown);
   return (
     <header className="bg-white border-b border-gray-300 flex item-center justify-between">
-      <div className="flex items-center justify-between h-[60px] container mx-auto">
-        <Link to="/">
+      <div className="flex items-center justify-between h-[60px] w-[975px] mx-auto">
+        <div>
           <div className="flex items-center gap-x-2 relative">
-            <img
-              className="h-[29px]"
-              src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
-              alt=""
-            />
+            <Link to="/">
+              <img
+                className="h-[29px]"
+                src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png"
+                alt=""
+              />
+            </Link>
+
             <div onClick={handleToggle}>
-              <Icon name="chevron-down" className="rotate-180" />
-              {toggleDropdown && <LogoOpener closeToggle={closeToggle} />}
+              <Icon name="chevron-down" className="rotate-180 cursor-pointer" />
+              {toggleDropdown && (
+                <LogoOpener
+                  closeToggle={closeToggle}
+                  toggleDropdown={toggleDropdown}
+                />
+              )}
             </div>
           </div>
-        </Link>
+        </div>
         <Search />
         <nav className="flex items-center gap-x-5">
           <NavLink to="/">
