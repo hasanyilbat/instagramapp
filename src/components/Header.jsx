@@ -2,21 +2,23 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import AddPost from "./AddPost";
 import { logout } from "./firebase";
 import Icon from "./Icon";
 import LogoOpener from "./LogoOpener";
 import Search from "./Search";
 
-const Header = () => {
+const Header = ({ closeToggle }) => {
   const user = useSelector((state) => state.auth.user);
+  const [modalOpen, setModalOpen] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
   const handleToggle = () => {
-    setToggleDropdown((prevState) => !prevState);
+    setToggleDropdown(!toggleDropdown);
   };
-  const closeToggle = () => {
-    setToggleDropdown(false);
-  };
-  console.log(toggleDropdown);
+
+  closeToggle(setToggleDropdown);
+
   return (
     <header className="bg-white border-b border-gray-300 flex item-center justify-between">
       <div className="flex items-center justify-between h-[60px] w-[975px] mx-auto">
@@ -33,10 +35,7 @@ const Header = () => {
             <div onClick={handleToggle}>
               <Icon name="chevron-down" className="rotate-180 cursor-pointer" />
               {toggleDropdown && (
-                <LogoOpener
-                  closeToggle={closeToggle}
-                  toggleDropdown={toggleDropdown}
-                />
+                <LogoOpener setToggleDropdown={setToggleDropdown} />
               )}
             </div>
           </div>
@@ -53,10 +52,10 @@ const Header = () => {
               <Icon name={isActive ? "direct-filled" : "direct"} size={24} />
             )}
           </NavLink>
-          <NavLink to="/">
+          <button onClick={() => setModalOpen(!modalOpen)}>
             <Icon name="new" size={24} />
-          </NavLink>
-          <NavLink to="/">
+          </button>
+          <NavLink>
             <Icon name="explore" size={24} />
           </NavLink>
           <NavLink to="/">
@@ -76,6 +75,7 @@ const Header = () => {
           </NavLink>
         </nav>
       </div>
+      {modalOpen && <AddPost setModalOpen={setModalOpen} />}
     </header>
   );
 };

@@ -30,12 +30,20 @@ const Post = () => {
       <div className="max-h-[225px] w-full p-3">
         <div className="flex items-center justify-between">
           <div className="flex gap-x-4">
-            <Icon name="heart" size={24} />
-            <Icon name="comment" size={24} />
-            <Icon name="sendPost" size={24} />
+            <button>
+              <Icon name="heart" size={24} />
+            </button>
+            <button>
+              <Icon name="comment" size={24} />
+            </button>
+            <button>
+              <Icon name="sendPost" size={24} />
+            </button>
           </div>
           <div>
-            <Icon name="save" size={24} />
+            <button>
+              <Icon name="save" size={24} />
+            </button>
           </div>
         </div>
         <div className="flex flex-col gap-y-2 mt-2">
