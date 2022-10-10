@@ -1,23 +1,24 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import AddPost from "./AddPost";
 import { logout } from "./firebase";
 import Icon from "./Icon";
 import LogoOpener from "./LogoOpener";
+import Notifications from "./Notifications";
 import Search from "./Search";
 
-const Header = ({ closeToggle }) => {
+const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
   const user = useSelector((state) => state.auth.user);
   const [modalOpen, setModalOpen] = useState(false);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
-
   const handleToggle = () => {
     setToggleDropdown(!toggleDropdown);
   };
 
-  closeToggle(setToggleDropdown);
+  const handleNotifications = () => {
+    setNotOn(!notOn);
+  };
 
   return (
     <header className="bg-white border-b border-gray-300 flex item-center justify-between">
@@ -58,9 +59,15 @@ const Header = ({ closeToggle }) => {
           <NavLink>
             <Icon name="explore" size={24} />
           </NavLink>
-          <NavLink to="/">
-            <Icon name="heart" size={24} />
-          </NavLink>
+          <div>
+            <div className="relative">
+              <div onClick={handleNotifications}>
+                <Icon name="heart" size={24} className="cursor-pointer" />
+              </div>
+
+              {notOn && <Notifications />}
+            </div>
+          </div>
           <NavLink to={`/${user.username}`}>
             {({ isActive }) => (
               <img

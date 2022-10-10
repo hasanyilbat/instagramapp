@@ -15,10 +15,10 @@ function App() {
   }
 
   return (
-    <>
+    <div>
       <Toaster position="top-right" />
       {showRoutes}
-    </>
+    </div>
   );
 }
 
