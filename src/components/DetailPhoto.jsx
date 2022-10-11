@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "./Icon";
 
 const DetailPhoto = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex items-center">
-      <div className="h-[600px] w-[500px] flex items-center bg-black">
+    <div className="flex items-center bg-black">
+      <div className="absolute top-0 right-0 p-4">
+        <button onClick={() => navigate(-1)}>
+          <Icon name="exit" />
+        </button>
+      </div>
+      <div className="h-[580px] w-[500px] flex items-center bg-black">
         <img
           src="https://cdn-1.motorsport.com/images/amp/0a9nWep0/s1000/red-bull-racing-rb18-1.jpg"
           alt=""
         />
       </div>
-      <div className="w-[559px] h-[600px] bg-white rounded-md relative">
+      <div className="w-[500px] h-[600px] bg-white rounded-md relative">
         <div className="flex items-center  p-4 justify-between">
           <div className="flex items-center gap-x-3">
             <img
@@ -20,7 +28,9 @@ const DetailPhoto = () => {
             />
             <div className="flex gap-x-4 items-center">
               <h6 className="font-semibold text-sm ">f1</h6>
-              <button className="text-[12px] text-brand">Follow</button>
+              <button className="text-sm text-brand font-semibold ">
+                Follow
+              </button>
             </div>
           </div>
           <div>
@@ -52,7 +62,7 @@ const DetailPhoto = () => {
                 beatae! Quam cumque odit quis quo unde?
               </p>
               <p className="text-xs text-[#8e8e8e]">
-                2 d <span className="font-semibold">See Translations</span>{" "}
+                2d <button className="font-semibold">See Translations</button>{" "}
               </p>
               <div className="max-h-[225px] w-full py-3 pr-4">
                 <div className="flex items-center justify-between">
@@ -74,7 +84,7 @@ const DetailPhoto = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-y-2 mt-2">
-                  <p className="text-sm text-[#8e8e8e]">
+                  <p className=" cursor-pointer text-sm text-[#8e8e8e]">
                     View all 353 comments
                   </p>
                   <p className="text-[10px] text-[#8e8e8e]">1 DAY AGO</p>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { NavLink, useParams } from "react-router-dom";
 import Icon from "../components/Icon";
 
 const Explore = () => {
@@ -72,8 +72,11 @@ const Explore = () => {
       >
         {images.map((img, id) => {
           return (
-            <div key={id} className="relative z-0">
-              <img src={img.image} alt="" className=" w-[257px] h-[257px]" />
+            <div
+              key={id}
+              className="relative z-0 justify-center items-center flex"
+            >
+              <img src={img.image} alt="" className=" w-full  h-full" />
               <NavLink
                 className="top-0 left-0 w-full h-full absolute hover:bg-[rgba(0,0,0,0.4)] flex items-center justify-center text-white cursor-pointer group"
                 to={`${id}`}
