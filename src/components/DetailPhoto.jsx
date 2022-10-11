@@ -1,22 +1,74 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Icon from "./Icon";
 
 const DetailPhoto = () => {
   const navigate = useNavigate();
 
+  const { id } = useParams();
+  console.log(id);
+  const images = [
+    {
+      id: 1,
+      image:
+        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2021/9/21/r3ovmu7379tsjjih8cnj/f1-turkiye-gp-programi",
+    },
+    {
+      id: 2,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/YMdQdX12/s1000/formula-1-bahrain-gp-2022-nico-2.jpg",
+    },
+    {
+      id: 3,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/YMdnLbK2/s1000/aston-martin-racing-amr22-1.jpg",
+    },
+    {
+      id: 4,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0OTPOpZnlC95NyAb442qt90NpUhlbf0xkAjReysB-NEK5ooUYYpIi1dHV8pxwHFafzc8&usqp=CAU",
+    },
+    {
+      id: 5,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/0a9nWep0/s1000/red-bull-racing-rb18-1.jpg",
+    },
+    {
+      id: 6,
+      image:
+        "https://static.cedscdn.it/photos/MED_HIGH/40/97/6214097_1553_xpb_1109554_hires.jpg",
+    },
+    {
+      id: 7,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/YMdLMdm2/s1000/carlos-sainz-ferrari-f1-75-lew.jpg",
+    },
+    {
+      id: 8,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/0k78vWA0/s1000/lewis-hamilton-mercedes-w13-ba.jpg",
+    },
+    {
+      id: 9,
+      image:
+        "https://cdn-1.motorsport.com/images/amp/0k7Evaq0/s1000/f1-2022-screenshot-1.jpg",
+    },
+    {
+      id: 10,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPGMkBlxapX595h0-KdQ8CBS6uHe_C_-8rLFZdyFanqKKDEs8fngV0Qkp_x4hcHlLklw&usqp=CAU",
+    },
+    {
+      id: 11,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPGMkBlxapX595h0-KdQ8CBS6uHe_C_-8rLFZdyFanqKKDEs8fngV0Qkp_x4hcHlLklw&usqp=CAU",
+    },
+  ];
+
   return (
     <div className="flex items-center bg-black">
-      <div className="absolute top-0 right-0 p-4">
-        <button onClick={() => navigate(-1)}>
-          <Icon name="exit" />
-        </button>
-      </div>
-      <div className="h-[580px] w-[500px] flex items-center bg-black">
-        <img
-          src="https://cdn-1.motorsport.com/images/amp/0a9nWep0/s1000/red-bull-racing-rb18-1.jpg"
-          alt=""
-        />
+      <div className="h-[580px] w-[500px] flex justify-center items-center bg-black">
+        <img src={images[id].image} alt="" className="" />
       </div>
       <div className="w-[500px] h-[600px] bg-white rounded-md relative">
         <div className="flex items-center  p-4 justify-between">

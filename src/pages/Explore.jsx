@@ -15,7 +15,7 @@ const Explore = () => {
     {
       id: 2,
       image:
-        "https://img.redbull.com/images/c_crop,x_910,y_0,h_2133,w_1600/c_fill,w_400,h_540/q_auto:low,f_auto/redbullcom/2020/2/18/dhyqlva7ckbqpmgnpq8e/f1",
+        "https://cdn-1.motorsport.com/images/amp/YMdQdX12/s1000/formula-1-bahrain-gp-2022-nico-2.jpg",
     },
     {
       id: 3,

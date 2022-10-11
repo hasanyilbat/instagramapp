@@ -1,15 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Icon from "./Icon";
-import { useDetectClickOutside } from "react-detect-click-outside";
 
-const LogoOpener = ({ setToggleDropdown }) => {
-  //   const ref = useDetectClickOutside({
-  //     onTriggered: closeToggle,
-  //     disableClick: toggleDropdown,
-  //   });
-  //   console.log(toggleDropdown);
-
+const LogoOpener = () => {
   return (
     <div className="absolute bg-white drop-shadow-md text-sm top-10 left-0 z-10">
       <div
