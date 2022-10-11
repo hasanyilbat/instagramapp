@@ -13,6 +13,8 @@ import Inbox from "../pages/inbox/Inbox";
 import Chat from "../pages/inbox/components/chat/Chat";
 import Favorites from "../pages/Favorites";
 import Following from "../pages/Following";
+import Explore from "../pages/Explore";
+import DetailPost from "../pages/DetailPost";
 
 const routes = [
   {
@@ -63,6 +65,14 @@ const routes = [
       {
         path: "following",
         element: <Following />,
+      },
+      {
+        path: "explore",
+        element: <Explore />,
+      },
+      {
+        path: "explore/:id",
+        element: <DetailPost />,
       },
     ],
   },

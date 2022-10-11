@@ -40,8 +40,8 @@ const Notifications = () => {
   ];
 
   return (
-    <div className="z-20 ">
-      <div className="absolute w-[500px] top-8 -right-11 bg-white h-[362px] overflow-auto">
+    <div>
+      <div className="absolute w-[500px] top-8 -right-11 bg-white h-[362px] overflow-auto z-10">
         <div className="flex items-center justify-between border-b border-b-gray-300 py-[12.5px] px-[8.5px] z-10 ">
           <div className="relative flex gap-x-4 ">
             <img
