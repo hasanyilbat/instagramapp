@@ -7,11 +7,13 @@ import { logout } from "./firebase";
 import Icon from "./Icon";
 import LogoOpener from "./LogoOpener";
 import Notifications from "./Notifications";
+import ProfilPopUp from "./ProfilPopUp";
 import Search from "./Search";
 
 const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
   const user = useSelector((state) => state.auth.user);
   const [modalOpen, setModalOpen] = useState(false);
+  const [profileToggle, setProfileToggle] = useState(false);
   const handleToggle = () => {
     setToggleDropdown(!toggleDropdown);
   };
@@ -19,6 +21,12 @@ const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
   const handleNotifications = () => {
     setNotOn(!notOn);
   };
+
+  const profileToggleOpen = () => {
+    setProfileToggle(!profileToggle);
+  };
+
+  console.log(profileToggle);
 
   return (
     <header className="bg-white border-b border-gray-300 flex item-center justify-between">
@@ -68,17 +76,16 @@ const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
               {notOn && <Notifications />}
             </div>
           </div>
-          <NavLink to={`/${user.username}`}>
-            {({ isActive }) => (
-              <img
-                src="/no-avatar.jpeg"
-                alt=""
-                className={classNames({
-                  "w-6 h-6 rounded-full": true,
-                  "ring-1 ring-offset-1 ring-black": isActive,
-                })}
-              />
-            )}
+          <NavLink onClick={profileToggleOpen} className="relative">
+            <img
+              src="/no-avatar.jpeg"
+              alt=""
+              className="w-6 h-6 rounded-full ring-1 ring-offset-1 ring-black"
+            />
+
+            <div className="absolute top-7 right-0">
+              {profileToggle && <ProfilPopUp user={user} />}
+            </div>
           </NavLink>
         </nav>
       </div>

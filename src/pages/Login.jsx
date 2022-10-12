@@ -43,7 +43,7 @@ function Login() {
     return <Navigate to={location.state?.return_url || "/"} replace={true} />;
   }
 
-  const handleSubmit = async (values, actions) => {
+  const handleSubmit = async (values) => {
     await login(values.username, values.password);
   };
 
