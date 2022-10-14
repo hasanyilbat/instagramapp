@@ -10,10 +10,17 @@ import Notifications from "./Notifications";
 import ProfilPopUp from "./ProfilPopUp";
 import Search from "./Search";
 
-const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
+const Header = ({
+  toggleDropdown,
+  setToggleDropdown,
+  notOn,
+  setNotOn,
+  profileToggle,
+  setProfileToggle,
+}) => {
   const user = useSelector((state) => state.auth.user);
   const [modalOpen, setModalOpen] = useState(false);
-  const [profileToggle, setProfileToggle] = useState(false);
+
   const handleToggle = () => {
     setToggleDropdown(!toggleDropdown);
   };
@@ -84,7 +91,9 @@ const Header = ({ toggleDropdown, setToggleDropdown, notOn, setNotOn }) => {
             />
 
             <div className="absolute top-7 right-0">
-              {profileToggle && <ProfilPopUp user={user} />}
+              {profileToggle && (
+                <ProfilPopUp user={user} setProfileToggle={setProfileToggle} />
+              )}
             </div>
           </NavLink>
         </nav>

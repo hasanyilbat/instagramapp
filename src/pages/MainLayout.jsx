@@ -4,6 +4,7 @@ import Header from "../components/Header";
 const MainLayout = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [notOn, setNotOn] = useState(false);
+  const [profileToggle, setProfileToggle] = useState(false);
 
   //! close popup menu
   const closeToggle = (e) => {
@@ -12,6 +13,9 @@ const MainLayout = () => {
     }
     if (e.target.id !== "notification-popup" && notOn) {
       setNotOn(false);
+    }
+    if (e.target.id !== "container3" && profileToggle) {
+      setProfileToggle(false);
     }
   };
 
@@ -22,6 +26,8 @@ const MainLayout = () => {
         setToggleDropdown={setToggleDropdown}
         notOn={notOn}
         setNotOn={setNotOn}
+        profileToggle={profileToggle}
+        setProfileToggle={setProfileToggle}
       />
       <div className="container mx-auto pt-4">
         <Outlet />
