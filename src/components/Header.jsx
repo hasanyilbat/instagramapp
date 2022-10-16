@@ -68,9 +68,9 @@ const Header = ({
               <Icon name={isActive ? "direct-filled" : "direct"} size={24} />
             )}
           </NavLink>
-          <button onClick={() => setModalOpen(!modalOpen)}>
+          <NavLink onClick={() => setModalOpen(!modalOpen)}>
             <Icon name="new" size={24} />
-          </button>
+          </NavLink>
           <NavLink to="explore">
             <Icon name="explore" size={24} />
           </NavLink>
