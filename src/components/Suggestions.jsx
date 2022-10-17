@@ -38,7 +38,7 @@ const Suggestions = () => {
         <p className="font-semibold text-sm  text-[#8e8e8e]">
           Suggestions For You
         </p>
-        <p className="text-[12px]">See All</p>
+        <p className="text-[12px] cursor-pointer">See All</p>
       </div>
       <div className="py-4 flex flex-col gap-y-2 px-4">
         {suggestions.map((person) => {

@@ -6,8 +6,14 @@ const Home = () => {
   return (
     <div>
       <div className="flex gap-x-7">
-        <Post />
-        <Suggestions />
+        <div>
+          <Post />
+          <Post />
+          <Post />
+        </div>
+        <div>
+          <Suggestions />
+        </div>
       </div>
       <Helmet>
         <title>Instagram</title>

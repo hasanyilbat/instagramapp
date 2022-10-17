@@ -62,7 +62,7 @@ const Header = ({
               <Icon name={isActive ? "home-filled" : "home"} size={24} />
             )}
           </NavLink>
-          <NavLink to="inbox">
+          <NavLink to="/inbox">
             {({ isActive }) => (
               <Icon name={isActive ? "direct-filled" : "direct"} size={24} />
             )}

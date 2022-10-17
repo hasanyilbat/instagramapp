@@ -10,7 +10,7 @@
   }
   .container {
     width: 935px !important;
-    max-width: %100;
+    max-width: 100%;
   }
   #root {
     @apply flex flex-col;
