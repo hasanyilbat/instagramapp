@@ -48,7 +48,7 @@ function Login() {
   };
 
   return (
-    <div className="h-full w-full flex flex-wrap overflow-auto items-center justify-center gap-x-8 ">
+    <div className="h-screen w-full flex flex-wrap overflow-auto items-center justify-center gap-x-8 ">
       <Helmet>
         <title>Login Instagram</title>
       </Helmet>

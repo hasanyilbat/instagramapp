@@ -6,7 +6,7 @@
   html,
   body,
   #root {
-    @apply h-full bg-zinc-50;
+    @apply h-screen bg-zinc-50;
   }
   .container {
     width: 935px !important;
