@@ -1,9 +1,8 @@
 import classNames from "classnames";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import AddPost from "./AddPost";
-import { logout } from "./firebase";
 import Icon from "./Icon";
 import LogoOpener from "./LogoOpener";
 import Notifications from "./Notifications";
@@ -63,7 +62,7 @@ const Header = ({
               <Icon name={isActive ? "home-filled" : "home"} size={24} />
             )}
           </NavLink>
-          <NavLink to="/inbox">
+          <NavLink to="inbox">
             {({ isActive }) => (
               <Icon name={isActive ? "direct-filled" : "direct"} size={24} />
             )}
@@ -87,7 +86,10 @@ const Header = ({
             <img
               src="/no-avatar.jpeg"
               alt=""
-              className="w-6 h-6 rounded-full ring-1 ring-offset-1 ring-black"
+              className={classNames({
+                "w-6 h-6 rounded-full ": true,
+                "ring-1 ring-offset-1 ring-black": profileToggle,
+              })}
             />
 
             <div className="absolute top-7 right-0">
